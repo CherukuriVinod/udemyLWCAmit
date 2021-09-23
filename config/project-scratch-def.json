@@ -1,0 +1,16 @@
+{
+  "orgName": "Flow LWC ORG",
+  "edition": "Developer",
+  "adminEmail": "vinod.cherukuris@gmail.com",
+  "description": "Dev org for Flow and LWC Pratice",
+  "hasSampleData": true,
+  "features": ["EnableSetPasswordInApi"],
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "mobileSettings": {
+      "enableS1EncryptedStoragePref2": false
+    }
+  }
+}

@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="Contact List" icon-name="standard:contact">
+        <div class="slds-var-m-around_small">
+            <template if:true={contacts}>
+                <template for:each={contacts} for:item="con">
+                    <c-contact-Tile contact={con} key={con.Id}></c-contact-Tile>
+                </template>
+            </template>
+        </div>
+    </lightning-card>
+</template>
+
+<!--Parent Component of Contact Tile Component-->

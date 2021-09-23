@@ -1,0 +1,27 @@
+<template>
+    <div>
+        <template if:true={isJerry}>
+            <img src="https://cdn.pixabay.com/photo/2020/05/11/15/38/tom-5158824_960_720.png"
+            width="200" height="200"/>
+        </template>
+        <template if:true={isTom}>
+            <img src="https://pixy.org/src/148/thumbs350/1480189.jpg"
+            width="200" height="200"/>
+        </template>
+
+    </div><br/>
+    <p><strong>Click the below buttons to see the images</strong></p>
+    <div class="slds-var-m-around_small">
+        <lightning-button class="slds-float_left"
+            label="Show Tom"
+            variant="brand"
+            onclick={showTom}
+        ></lightning-button>
+        &nbsp;
+        <lightning-button class="slds-float_left"
+            label="Show Jerry"
+            variant="brand"
+            onclick={showJerry}
+        ></lightning-button>
+    </div>
+</template>

@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="My Second LWC Component" icon-name="custom:custom14">
+        <div class="slds-var-m-around_small" style="min-width:10rem">
+            <lightning-input
+                value={message}
+                label="Event Demo"
+                placeholder="Type Your Input Here"
+                onchange={handleChange}
+                onblur={handleChange}
+            ></lightning-input>
+            <br/>
+            Your Text Will Be Displayed Here: {message}<br/><br/>
+            <lightning-button class="slds-align_absolute-center"
+                value="Click Me"
+                variant="brand"
+                label="Click Me"
+                onclick={handleChange}
+            ></lightning-button>
+        </div>
+    </lightning-card>
+</template>
