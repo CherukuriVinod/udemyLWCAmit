@@ -13,5 +13,6 @@
 <!--<c:parentComp/>-->
 <!--<c:slotsWrapper/>-->
 <!--<c:contactList/>-->
-<c:auraLwc/>
+<!--<c:auraLwc/>-->
+<c:sharedMisc/>
 </aura:application>
