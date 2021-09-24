@@ -11,4 +11,4 @@ echo "Open Newly Created Scratch Org"
 sfdx force:org:open
 
 echo "Show Org List"
-sfdx force:org:list
+sfdx force:org:list --all

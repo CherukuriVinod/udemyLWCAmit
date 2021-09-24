@@ -10,7 +10,8 @@
 <!--<c:getterSetterDemo/> -->
 <!--<c:disconnectedCallbackDemo/> -->
 <!--<c:renderLwc/>-->
-<c:parentComp/>
+<!--<c:parentComp/>-->
 <!--<c:slotsWrapper/>-->
 <!--<c:contactList/>-->
+<c:auraLwc/>
 </aura:application>

@@ -8,4 +8,8 @@ export default class ParentComp extends LightningElement {
         console.log('Message is:',message +'\nPageno is:',pageno +'\nName is:',name);
         alert('Event Handled' +message);
     }
+
+    handleClick(){
+        this.template.querySelector('c-child-Comp').childMethod('After API Function', 120);
+    }
 }
