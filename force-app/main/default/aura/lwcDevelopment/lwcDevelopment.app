@@ -14,5 +14,6 @@
 <!--<c:slotsWrapper/>-->
 <!--<c:contactList/>-->
 <!--<c:auraLwc/>-->
-<c:sharedMisc/>
+<!--<c:sharedMisc/>-->
+<c:quickCase/>
 </aura:application>
