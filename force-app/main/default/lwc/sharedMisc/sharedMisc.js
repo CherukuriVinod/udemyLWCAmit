@@ -13,7 +13,7 @@ export default class SharedMisc extends LightningElement {
     }
 
     calculateSi(){
-        cosnt s = si(this.p, this.t, this.r);
+        const s = si(this.p, this.t, this.r);
         console.log('Simple Interest is ', s);
     }
 }
