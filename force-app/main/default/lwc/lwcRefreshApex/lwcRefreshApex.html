@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="Top Ten Accounts">
+        <lightning-button variant="destructive" slot="actions" label="Delete Account" icon-name="utility:delete" onclick={deleteRecord}></lightning-button>
+        <lightning-button variant="success" slot="actions" label="Update Account" icon-name="utility:record_update" onclick={updateRecord}></lightning-button>
+        <lightning-datatable
+            key-field="Id"
+            data={accountList}
+            max-row-selection="1"
+            columns={cols}
+            onrowselection={handleSelection}>
+        </lightning-datatable>
+    </lightning-card>
+</template>

@@ -15,5 +15,8 @@
 <!--<c:contactList/>-->
 <!--<c:auraLwc/>-->
 <!--<c:sharedMisc/>-->
-<c:quickCase/>
+<!--<c:quickCase/>-->
+<c:wireMethod/>
+<!--<c:lwcRefreshApex/>-->
+<c:apexImperativeMethod/>
 </aura:application>
