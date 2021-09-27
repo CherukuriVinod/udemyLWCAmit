@@ -156,6 +156,11 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentName>getRecord</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentInstanceProperties>
                     <name>tabs</name>
                     <value>tabs</value>
