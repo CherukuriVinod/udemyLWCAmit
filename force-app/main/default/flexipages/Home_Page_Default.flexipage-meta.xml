@@ -33,6 +33,15 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentInstanceProperties>
+                    <name>message</name>
+                    <value>Design Attribute</value>
+                </componentInstanceProperties>
+                <componentName>designAttribute</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentName>home:assistant</componentName>
             </componentInstance>
         </itemInstances>
