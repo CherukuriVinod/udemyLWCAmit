@@ -16,7 +16,9 @@
 <!--<c:auraLwc/>-->
 <!--<c:sharedMisc/>-->
 <!--<c:quickCase/>-->
-<c:wireMethod/>
+<!--<c:wireMethod/>-->
 <!--<c:lwcRefreshApex/>-->
-<c:apexImperativeMethod/>
+<!--<c:apexImperativeMethod/>-->
+<c:customLookup objectApiName="Account" fieldApiName="Name"  iconname="standard:account"/>
+<c:customLookup objectApiName="Case" fieldApiName="Subject" iconname="standard:case"/>
 </aura:application>

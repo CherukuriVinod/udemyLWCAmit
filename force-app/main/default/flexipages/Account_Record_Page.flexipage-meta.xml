@@ -38,6 +38,11 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
+                <componentName>objectInfoAPI</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentInstanceProperties>
                     <name>displayOption</name>
                     <value>BOTH</value>

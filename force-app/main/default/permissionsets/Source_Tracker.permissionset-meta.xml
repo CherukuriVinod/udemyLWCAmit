@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <classAccesses>
+        <apexClass>AccountController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CaseController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>FlowHoursContactController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -10,6 +18,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>FlowSeriesCase</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>LookupControllerLWC</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -80,6 +92,10 @@
         <object>Notification_Event__e</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
+    <recordTypeVisibilities>
+        <recordType>Account.Business_Account</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
     <tabSettings>
         <tab>Error_Log__c</tab>
         <visibility>Visible</visibility>
