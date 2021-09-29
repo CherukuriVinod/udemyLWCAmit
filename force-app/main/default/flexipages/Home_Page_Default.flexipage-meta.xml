@@ -33,6 +33,11 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentName>navToNewRecordWithDefaults</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentInstanceProperties>
                     <name>message</name>
                     <value>Design Attribute</value>

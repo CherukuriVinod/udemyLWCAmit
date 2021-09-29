@@ -147,6 +147,11 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
+                <componentName>example</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentInstanceProperties>
                     <name>tabs</name>
                     <value>maintabs</value>

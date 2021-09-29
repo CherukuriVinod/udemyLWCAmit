@@ -1,0 +1,19 @@
+<template>
+    <lightning-card title="Navigation Demo"
+        icon-name="custom:custom34">
+        <div class="slds-var-m-around_small">
+            <lightning-button label="Object Home" variant="brand" icon-name="utility:home" onclick={navigateToObjectHome}
+            ></lightning-button>&nbsp;&nbsp;
+            <lightning-button label="List View" variant="brand" icon-name="utility:list" onclick={navigateToListView}
+            ></lightning-button>&nbsp;&nbsp;
+            <lightning-button label="Record View" variant="brand" icon-name="utility:record" onclick={navigateToRecordViewPage}
+            ></lightning-button>&nbsp;&nbsp;
+            <lightning-button label="New  Record" variant="brand" icon-name="utility:new" onclick={navigateToNewRecordPage}
+            ></lightning-button>&nbsp;&nbsp;
+            <lightning-button label="Edit" variant="brand" icon-name="utility:edit_form" onclick={navigateToRecordEditPage}
+            ></lightning-button>&nbsp;&nbsp;
+            <lightning-button label="Custom URL" variant="brand" icon-name="utility:link" onclick={navigateToWebPage}
+            ></lightning-button>
+        </div>
+    </lightning-card>
+</template>
