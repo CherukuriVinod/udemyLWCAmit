@@ -1,24 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
-        <fullName>Account_Description</fullName>
+        <fullName>salesforceLogoDescription</fullName>
+        <categories>salesforceLogoDescription</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Account Description</shortDescription>
-        <value>This is just a simple description</value>
-    </labels>
-    <labels>
-        <fullName>MulesoftGroup</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>MulesoftGroup</shortDescription>
-        <value>0F9N00000003K9qKAE</value>
-    </labels>
-    <labels>
-        <fullName>WelcomeMessage</fullName>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Welcome Message</shortDescription>
-        <value>I Wish You a Very Wonderful Day</value>
+        <shortDescription>salesforceLogoDescription</shortDescription>
+        <value>Salesforce Official Logo</value>
     </labels>
 </CustomLabels>

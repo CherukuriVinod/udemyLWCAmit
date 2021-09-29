@@ -1,4 +1,4 @@
-<aura:application extends="force:slds">
+<aura:application extends="force:slds" access="global">
 <!--<c:helloWorld1/>-->
 <!--<c:htmlEvents/>-->
 <!--<c:ifElseDemo/>-->
@@ -19,6 +19,9 @@
 <!--<c:wireMethod/>-->
 <!--<c:lwcRefreshApex/>-->
 <!--<c:apexImperativeMethod/>-->
-<c:customLookup objectApiName="Account" fieldApiName="Name"  iconname="standard:account"/>
-<c:customLookup objectApiName="Case" fieldApiName="Subject" iconname="standard:case"/>
+<!--<c:customLookup objectApiName="Account" fieldApiName="Name"  iconname="standard:account"/>-->
+<!--<c:customLookup objectApiName="Case" fieldApiName="Subject" iconname="standard:case"/>-->
+<!--<aura:dependency resource="c:customLookup"/>
+<aura:dependency resource="c:parentComp"/>-->
+<c:customLabel/>
 </aura:application>
