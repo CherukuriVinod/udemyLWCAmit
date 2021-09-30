@@ -1,0 +1,31 @@
+<template>
+    <lightning-card  variant="Narrow"  title="DataTable Demo" icon-name="standard:contact_list">
+        <div class="slds-var-p-around_large">
+            <lightning-button variant="brand" label="Process Selected Rows" 
+                onclick={handleSelectedRowsClick}></lightning-button>
+        </div>
+        <div class="slds-p-around_large">
+            <lightning-datatable
+                key-field="Id"
+                data={contactData}
+                show-row-number-column
+                onrowaction={handleRowAction}
+                sorted-by={sortBy}
+                sorted-direction={sortDirection}
+                selected-rows={selectedRows}
+                onrowselection={handleSelectedRows}
+                onsort={handleSortdata}
+                draft-values={draftValues}
+                onsave={handleSave}
+                columns={columnsList}
+            ></lightning-datatable>
+        </div>
+        <!--<div slot="footer">
+            <lightning-badge label="Datatable"></lightning-badge>
+        </div>-->
+        <!-- 
+            onsave={handleSave}
+            draft-values={draftValues}
+        -->
+    </lightning-card>
+</template>
