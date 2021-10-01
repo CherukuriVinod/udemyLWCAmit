@@ -3,7 +3,22 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentName>tabSetComponent</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentName>home:heroChart</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>progressIndicatorComponent</componentName>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>lightningMapExample</componentName>
             </componentInstance>
         </itemInstances>
         <itemInstances>

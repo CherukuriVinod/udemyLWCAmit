@@ -1,0 +1,18 @@
+<template>
+    <lightning-card variant="Narrow" title="Progress Indicator" icon-name="utility:threedots">
+        <div class="slds-var-m-around_large">
+            <lightning-progress-indicator current-step={currentStep} type="path" has-error="true" variant="base">
+                <template if:true={stepValues} for:each={stepValues} for:item="step">
+                    <lightning-progress-step key={step.value} label={step.label} value={step.value}>
+
+                    </lightning-progress-step>
+                </template>
+            </lightning-progress-indicator>
+        </div>
+        <div slot="footer">
+            <lightning-badge label="Progress Indicator" icon-name="utility:location" class="slds-badge">
+
+            </lightning-badge>
+        </div>
+    </lightning-card>
+</template>
