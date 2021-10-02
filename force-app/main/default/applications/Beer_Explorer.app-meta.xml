@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#0070D2</headerColor>
+        <logo>beer</logo>
+        <logoVersion>1</logoVersion>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
+    </brand>
+    <description>This project is an e-corn project where we will implement</description>
+    <formFactors>Small</formFactors>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <label>Beer Explorer</label>
+    <navType>Standard</navType>
+    <tabs>Beer_Explorer</tabs>
+    <tabs>Beer__c</tabs>
+    <tabs>Beer_Order__c</tabs>
+    <tabs>Address_Book__c</tabs>
+    <tabs>Cart_Item__c</tabs>
+    <tabs>Cart__c</tabs>
+    <tabs>Coupon__c</tabs>
+    <tabs>Order_Item__c</tabs>
+    <tabs>Order__c</tabs>
+    <tabs>Error_Log__c</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>Beer_Explorer_UtilityBar</utilityBar>
+</CustomApplication>
