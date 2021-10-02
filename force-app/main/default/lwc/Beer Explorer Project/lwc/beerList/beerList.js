@@ -2,7 +2,7 @@ import { LightningElement,track, wire } from 'lwc';
 import searchBeer from '@salesforce/apex/BeerController.searchBeer';
 import {ShowToastEvent} from 'lightning/platformShowToastEvent';
 import { NavigationMixin } from 'lightning/navigation';
-export default class BeerList extends  LightningElement {
+export default class BeerList extends NavigationMixin  (LightningElement) {
 
     @track beerRecords;
     @track errors;
