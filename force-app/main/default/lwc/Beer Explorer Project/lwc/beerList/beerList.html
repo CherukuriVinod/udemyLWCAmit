@@ -1,20 +1,34 @@
 <template>
-   <div class="slds-var-m-around_small">
-       <div>
-           <c-beer-Search onsearch={handleEvent}></c-beer-Search>
-       </div>
+    <div style="background: white; border-radius: 10px;">
+        
+        <div style="border: 2px solid red; width: 30px; height: 30px; border-radius: 50%; 
+            margin-left: 1770px;
+            margin-bottom: -30px;
+            text-align: center;
+            font-size: 19px;">
+            <strong class="slds-var-m-top_small" style="text-align:center; vertical-align:center;">{itemsinCart}</strong>
+        </div>
 
-        <div>
+        <div style="margin-left: 1750px;" >
+            <img src={cart} height="70" width="80" /> 
+            
+        </div>
+
+        <div class="slds-var-m-left_small slds-var-m-right_small slds-var-m-bottom_small">
+           <c-beer-Search onsearch={handleEvent}></c-beer-Search>
+        </div>
+
+        <div class="slds-var-m-left_small slds-var-m-right_small slds-var-m-bottom_small">
            <template if:true={beerRecords}>
                 <div class="slds-grid slds-wrap">
                     <template for:each={beerRecords} for:item="item">
                         <div class="slds-col slds-size_1-of-3" key={item.Id}>
-                            <c-beer-tile key={item.Id} beer-record={item}></c-beer-tile>
+                            <c-beer-tile beer-record={item} oncart={addToCart}></c-beer-tile>
                         </div>
                     </template>
                 </div>
             </template>
-       </div>
+        </div>
    </div> 
 </template>
 

@@ -1,5 +1,108 @@
 public with sharing class BeerController {
-   
+
+    public static String generateCardId(){
+        String charList = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_';
+        Integer position;
+        Integer lengthRequired = 30;
+        String res = '';
+        for(Integer i = 0; i <= LengthRequired; i++) {
+            position = Integer.valueof(String.valueof(Math.roundToLong(CharList.length()*Math.random()))) -1;
+            Res += CharList.substring(position,position+1);
+        }
+        return Res;
+    }
+
+    @AuraEnabled
+    public static Coupon__c couponInfo(String name){
+        Coupon__c coupon = getCouponInformation(name);
+        return Coupon;
+    }
+
+    public static Coupon__c getCouponInformation(String name){
+        Coupon__c couponRec = [Select Id, Name, 
+                                Price__c 
+                                FROM Coupon__c
+                                Where Expired__c = false
+                                AND (Remaining_Quantity__c > 0 OR Name ='Default')
+                                AND Name =: name WITH SECURITY_ENFORCED];
+        return couponRec;
+    }
+
+    @AuraEnabled
+    public static string createCartItems(String cartId, String beerId, Decimal amount){
+        Cart_Item__c item = new Cart_Item__c();
+        Map<Id, Cart_Item__c> cartItemsMap = getCartItems(CartId);
+        if ( cartItemsMap.containsKey(BeerId) ) {
+            item = cartItemsMap.get(BeerId);
+            item.Item_Quantity__c = item.Item_Quantity__c + 1;
+            update item;
+        } else {
+            item.Beer__c = BeerId;
+            item.Cart__c = CartId;
+            item.Item_Quantity__c = 1;
+            item.Item_Amount__c = Amount;
+            insert item;
+        }   
+        return item.Id;
+    }
+
+    public Static Map<Id, Cart_Item__c> getCartItems(String cartId){
+        /* beerId, Cart_Iems*/
+        Map<Id, Cart_Item__c> cartItemsMap = new Map<Id, Cart_Item__c>();
+        for ( Cart_Item__c cart : [Select Id, Name, Beer__c, Cart__c, 
+                                Item_Quantity__c, Item_Amount__c
+                                FROM Cart_Item__c
+                                Where Cart__c =: cartId WITH SECURITY_ENFORCED]) {
+            cartItemsMap.put(cart.Beer__c, cart);
+        }
+        return cartItemsMap;
+    }
+
+    @AuraEnabled(cacheable=false)
+    public static string getCartId(){
+        List<Cart__c> cartInfo = [ Select Id, Name 
+                                FROM Cart__c 
+                                Where User__c =: UserInfo.getUserId()
+                                AND Cart_Status__c = 'Open'
+                                AND Is_Active__c = true WITH SECURITY_ENFORCED];
+        if (cartInfo != null && cartInfo.size() > 0) {
+            //return cartInfo.get(0).Id;
+            List<Cart_Item__c> cartItems = new list<Cart_Item__c>();
+            cartItems = [Select Id, Name, Beer__c, Cart__c, Item_Quantity__c, Item_Amount__c 
+                                FROM Cart_Item__c 
+                                Where Cart__c =: cartInfo.get(0).Id WITH SECURITY_ENFORCED];
+
+            Decimal itemQnty = 0;
+            for (Cart_Item__c item : cartItems) {
+                itemQnty = itemQnty + item.Item_Quantity__c;
+            }
+            
+            CartWrapper wrapper = new CartWrapper();
+            wrapper.CartId = cartInfo.get(0).Id;
+            wrapper.items = cartItems;
+            wrapper.Count = itemQnty;
+            return JSON.serialize(wrapper);
+        } else { 
+            Cart__c defaultCart = new Cart__c();
+            //String couponId = getCouponInformation('Default');
+            Coupon__c coupon = getCouponInformation('Default');
+            //defaultCart.Cart_Id__c = generateCardId();
+            defaultCart.Cart_Id__c = String.valueOf(Math.random());
+            defaultCart.Cart_Status__c = 'Open';
+            defaultCart.Is_Active__c = true;
+            defaultCart.Coupon__c = coupon.Id;
+            defaultCart.User__c = UserInfo.getUserId();
+            insert defaultCart;
+            CartWrapper wrapper = new CartWrapper();
+            wrapper.CartId = defaultCart.Id;
+            wrapper.items = null;
+            wrapper.Count = 0;
+            //return defaultCart.Id;
+            return JSON.serialize(wrapper);
+        }                        
+    }
+
+
     @AuraEnabled(cacheable=true)
     public static List<sObject> searchBeer(String searchParam){
         String likeParam = '%' +searchParam+'%';
@@ -16,5 +119,14 @@ public with sharing class BeerController {
         
         List<SObject> sObjectList = Database.query(Query);
         return sObjectList;
+    }
+
+    public class CartWrapper {
+        @AuraEnabled
+        public String cartId                { get; set; }
+        @AuraEnabled
+        public Decimal count                { get; set; }
+        @AuraEnabled
+        public List<Cart_Item__c> items     { get; set; }
     }
 }
