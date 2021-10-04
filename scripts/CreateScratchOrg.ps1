@@ -12,3 +12,6 @@ sfdx force:org:open
 
 echo "Show The Org List"
 sfdx force:org:list --all
+
+echo "Create Password for Scratch Org"
+sfdx force:user:password:generate
