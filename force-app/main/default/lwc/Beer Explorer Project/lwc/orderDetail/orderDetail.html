@@ -1,6 +1,6 @@
 <template>
-    <lightning-card title="Order Details" icon-name="custom:custom65">
-        <div class="slds-m-around_small">
+    <lightning-card title="Order Details" icon-name="standard:orders">
+        <div class="slds-var-m-around_small">
             <template if:true={orderInfo}>
                 <p>
                     <strong> Order No :</strong> {orderInfo.Name} &nbsp;
@@ -21,7 +21,7 @@
                 </p>
             </template>
         </div> 
-        <div class="slds-m-top_small">
+        <div class="slds-var-m-top_small">
             <template if:true={orderItems}>
                 <strong> Related Order Items </strong> <br/>
                 <table class="slds-table slds-table_cell-buffer slds-table_bordered">

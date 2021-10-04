@@ -1,15 +1,15 @@
 public with sharing class BeerController {
 
     public static String generateCardId(){
-        String charList = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_';
+        String CharList = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_';
         Integer position;
-        Integer lengthRequired = 30;
-        String res = '';
+        Integer LengthRequired = 30;
+        String Res = '';
         for(Integer i = 0; i <= LengthRequired; i++) {
             position = Integer.valueof(String.valueof(Math.roundToLong(CharList.length()*Math.random()))) -1;
-            res += CharList.substring(position,position+1);
+            Res += CharList.substring(position,position+1);
         }
-        return res;
+        return Res;
     }
 
     @AuraEnabled
@@ -126,7 +126,7 @@ public with sharing class BeerController {
     }
 
     @AuraEnabled
-    public static string createCartItems(String cartId, String beerId, Decimal amount){
+    public static string createCartItems(String CartId, String BeerId, Decimal Amount){
         Cart_Item__c item = new Cart_Item__c();
         Map<Id, Cart_Item__c> cartItemsMap = getCartItems(CartId);
         if ( cartItemsMap.containsKey(BeerId) ) {
@@ -199,7 +199,7 @@ public with sharing class BeerController {
     @AuraEnabled(cacheable=true)
     public static List<sObject> searchBeer(String searchParam){
         String likeParam = '%' +searchParam+'%';
-        String query = '';
+        String Query = '';
 
         /*
             Select Id, Name From beer__c Where Name Like '%aa%'
@@ -216,9 +216,9 @@ public with sharing class BeerController {
 
     public class CartWrapper {
         @AuraEnabled
-        public String cartId                { get; set; }
+        public String CartId                { get; set; }
         @AuraEnabled
-        public Decimal count                { get; set; }
+        public Decimal Count                { get; set; }
         @AuraEnabled
         public List<Cart_Item__c> items     { get; set; }
     }

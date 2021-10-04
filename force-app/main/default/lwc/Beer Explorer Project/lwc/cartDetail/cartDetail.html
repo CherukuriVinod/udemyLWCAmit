@@ -1,5 +1,5 @@
 <template>
-    <lightning-card title="Cart Detail" icon-name="utility:cart">
+    <lightning-card title="Cart Detail" icon-name="standard:webcart">
         <div class="slad-m-around_small">
             <div class="c-container">
                 <lightning-layout multiple-rows="true">
@@ -17,7 +17,7 @@
                                                         </c-address-component>
                                                     </template>
                                                     <div class="slds-var-m-top_small">
-                                                        <lightning-button label="Add New Address" variant="brand"
+                                                        <lightning-button label="Add New Address" variant="brand" icon-name="utility:target"
                                                             onclick={handleAddNewAddress}>
                                                         </lightning-button>
                                                         &nbsp;
@@ -101,9 +101,9 @@
                                             </div>
                                             <div class="slds-var-m-top_medium slds-var-m-bottom_small">
                                                 <lightning-button-group>
-                                                    <lightning-button label="Continue Shopping" variant="natural"
-                                                        onclick={handleContinue}></lightning-button>
-                                                    <lightning-button label="Proceed Checkout" variant="brand" icon-name="utility:arrowup"
+                                                    <lightning-button label="Continue Shopping" variant="brand" icon-name="utility:back"
+                                                        onclick={handleContinue}></lightning-button>&nbsp;&nbsp;
+                                                    <lightning-button label="Proceed Checkout" variant="success" icon-name="utility:arrowup"
                                                         onclick={handleProceed}></lightning-button>
                                                 </lightning-button-group>
                                             </div>
@@ -133,12 +133,12 @@
                                     </div>
                                     <div>
                                         <template if:true={isCoupoun}>
-                                            <lightning-input type="text" label="Provide A Valid Coupon" value={couponName} icon-name="standard:coupon_codes"
+                                            <lightning-input type="text" label="Provide A Valid Coupon" value={couponName}
                                                  onchange={handleChangeCoupon} onkeydown={handleChangeCoupon}
                                                 onkeypress={handleChangeCoupon} onkeyup={handleChangeCoupon}
                                                 onblur={handleChangeCoupon}></lightning-input>
                                             <p class="slds-var-m-around_small">
-                                                <lightning-button label="Apply Coupon" variant="brand" icon-name="utility:coupon_codes" onclick={applyCupon}
+                                                <lightning-button label="Apply Coupon" variant="brand"  onclick={applyCupon}
                                                     ></lightning-button>
                                             </p>
                                         </template>

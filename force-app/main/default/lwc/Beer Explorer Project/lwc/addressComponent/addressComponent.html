@@ -1,7 +1,7 @@
 <template>
-    <div class="slds-m-around-small">
+    <div class="slds-var-p-around_small">
         <template if:true={address}>
-            <div class="slds-grid slds-wrap slds-m-top_small">
+            <div class="slds-grid slds-wrap slds-var-m-top_small">
                 <div class="slds-col slds-size_1-of-2">
                     <lightning-formatted-address 
                         street={address.Street__c} 
@@ -12,7 +12,7 @@
                         disabled>
                     </lightning-formatted-address>
                     <br />
-                    <lightning-button label="Deliver Here" variant="brand" 
+                    <lightning-button label="Deliver Here" variant="brand" icon-name="utility:arrowup"
                     onclick={handleSelect}></lightning-button>
                 </div>
             </div>
