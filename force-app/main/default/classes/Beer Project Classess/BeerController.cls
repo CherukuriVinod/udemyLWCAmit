@@ -120,7 +120,7 @@ public with sharing class BeerController {
                                 Price__c 
                                 FROM Coupon__c
                                 Where Expired__c = false
-                                AND (Remaining_Quantity__c >= 0 OR Name ='Default')
+                                AND (Remaining_Quantity__c > 0 OR Name ='Default')
                                 AND Name =: name WITH SECURITY_ENFORCED];
         return couponRec;
     }
