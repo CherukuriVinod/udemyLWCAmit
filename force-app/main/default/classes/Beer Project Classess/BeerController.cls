@@ -7,10 +7,107 @@ public with sharing class BeerController {
         String res = '';
         for(Integer i = 0; i <= LengthRequired; i++) {
             position = Integer.valueof(String.valueof(Math.roundToLong(CharList.length()*Math.random()))) -1;
-            Res += CharList.substring(position,position+1);
+            res += CharList.substring(position,position+1);
         }
-        return Res;
+        return res;
     }
+
+    @AuraEnabled
+    public static OrderWrapper orderDetails(String orderId){
+        Order__c orderInfo = [
+            Select Id, Name, User__c, Shipping_Address__c,subTotal__c,
+            Shipping_Address__r.Street__c, Shipping_Address__r.City__c,
+            Shipping_Address__r.Country__c,
+            Shipping_Address__r.State__c,
+            Shipping_Address__r.Postal_Code__c,
+            (
+                Select Id, Name,
+                Beer__r.Name,
+                Ordered_Quantity__c,
+                Item_Price__c
+                From Order_Items__r
+            )
+            From Order__c 
+            Where Id =: orderId WITH SECURITY_ENFORCED
+        ];
+        OrderWrapper wrapper = new OrderWrapper();
+        wrapper.order = orderInfo;
+        wrapper.Orderitems = orderInfo.Order_Items__r;
+        // orderInfo.Order_Items__r => List<Order_Item__c> => null
+        return wrapper;
+    }
+
+    @AuraEnabled
+    public static Order__c createOrder(String cartId, string addressId, Decimal totalAmount){
+        Order__c orderInfo = new Order__c();
+        orderInfo.User__c = UserInfo.getUserId();
+        orderInfo.Cart__c = cartId;
+        orderInfo.Shipping_Address__c = addressId;
+        orderInfo.subTotal__c = totalAmount;
+        insert orderInfo;
+
+        List<Cart_Item__c> cartItems = (List<Cart_Item__c>)JSON.deserialize( getItems(cartId),
+                                                                List<Cart_Item__c>.class);
+
+        List<Order_Item__c> orderItems = new List<Order_Item__c>();
+        For (Cart_Item__c item : cartItems){
+            Order_Item__c oItem = new Order_Item__c();
+            oItem.Beer__c = item.Beer__c;
+            oItem.Related_Order__c = orderInfo.Id;
+            oItem.Ordered_Quantity__c = item.Item_Quantity__c;
+            oItem.Item_Price__c = item.Item_Amount__c;
+            orderItems.add(oItem);
+        }
+        insert orderItems; 
+
+        Cart__c cart = new Cart__c();
+        cart.Id = cartId;
+        cart.Cart_Status__c = 'Closed';
+        cart.Is_Active__c = false;
+        update cart;
+
+        Order__c order = [Select Id, Name From Order__c Where Id =:orderInfo.Id WITH SECURITY_ENFORCED];
+        return order;
+    }
+
+    @AuraEnabled
+    public static Address_Book__c saveAddress(String addressDetails){
+        // {City__c : '', State__c : ''}
+        Address_Book__c addressInfo = (Address_Book__c)JSON.deserialize(addressDetails,
+                                                        Address_Book__c.class);
+        // Address_Book__c addrs = new Address_Book__c()
+        // addrs.City__c = '';
+        // addrs.State__c = '';
+        // 1 - String which contains information in form of Object
+        // 2 - Actual Object/Apex Class
+        // 3 - (Account)JSON.deserialize(addressDetails,Account.class);
+        addressInfo.User__c = UserInfo.getUserId();
+        insert addressInfo;
+        return addressInfo;
+    }
+
+    @AuraEnabled
+    public static List<Address_Book__c> addressDetails(){
+        List<Address_Book__c> addressList = [SELECT Id, City__c, Country__c, 
+                                                    Postal_Code__c, State__c, 
+                                                    Street__c, User__c 
+                                                    FROM Address_Book__c 
+                                                Where User__c != null 
+                                                AND User__c =: UserInfo.getUserId() WITH SECURITY_ENFORCED];
+        return addressList;
+    }
+
+    @AuraEnabled
+    public static string getItems(String cartId){
+        List<Cart_Item__c> items = [Select Id, Name, Beer__c, Cart__c, 
+                                Item_Quantity__c, Item_Amount__c,
+                                Total_Amount__c,
+                                Beer__r.Name
+                                FROM Cart_Item__c 
+                                Where Cart__c =: cartId WITH SECURITY_ENFORCED];
+        return JSON.serialize(items);
+    }
+
 
     @AuraEnabled
     public static Coupon__c couponInfo(String name){
@@ -66,7 +163,6 @@ public with sharing class BeerController {
                                 AND Cart_Status__c = 'Open'
                                 AND Is_Active__c = true WITH SECURITY_ENFORCED];
         if (cartInfo != null && cartInfo.size() > 0) {
-            //return cartInfo.get(0).Id;
             List<Cart_Item__c> cartItems = new list<Cart_Item__c>();
             cartItems = [Select Id, Name, Beer__c, Cart__c, Item_Quantity__c, Item_Amount__c 
                                 FROM Cart_Item__c 
@@ -84,9 +180,7 @@ public with sharing class BeerController {
             return JSON.serialize(wrapper);
         } else { 
             Cart__c defaultCart = new Cart__c();
-            //String couponId = getCouponInformation('Default');
             Coupon__c coupon = getCouponInformation('Default');
-            //defaultCart.Cart_Id__c = generateCardId();
             defaultCart.Cart_Id__c = String.valueOf(Math.random());
             defaultCart.Cart_Status__c = 'Open';
             defaultCart.Is_Active__c = true;
@@ -97,7 +191,6 @@ public with sharing class BeerController {
             wrapper.CartId = defaultCart.Id;
             wrapper.items = null;
             wrapper.Count = 0;
-            //return defaultCart.Id;
             return JSON.serialize(wrapper);
         }                        
     }
@@ -128,5 +221,12 @@ public with sharing class BeerController {
         public Decimal count                { get; set; }
         @AuraEnabled
         public List<Cart_Item__c> items     { get; set; }
+    }
+
+    public class OrderWrapper {
+        @AuraEnabled
+        public Order__c order                     { get; set; }
+        @AuraEnabled
+        public List<Order_Item__c> orderitems     { get; set; }
     }
 }

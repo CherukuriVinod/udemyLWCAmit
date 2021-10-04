@@ -80,7 +80,7 @@ export default class BeerList extends NavigationMixin  (LightningElement) {
             if ( data ) {
             //console.log('Data ', data);
             this.beerRecords = data;
-            this.errors=error;
+            this.errors=undefined;
         }
 
         if( error ) {
