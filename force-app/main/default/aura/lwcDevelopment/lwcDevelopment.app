@@ -3,7 +3,7 @@
         <!--<c:helloWorld1/>-->
         <!--<c:htmlEvents/>-->
         <!--<c:ifElseDemo/>-->
-        <!--<c:IteratorDemo/> -->
+        <c:iteratorDemo/>
         <!--<c:calculatorCmp/> -->
         <!--<c:calculatorDemo/> -->
         <!--<c:propDemo/> -->
@@ -26,6 +26,6 @@
         <aura:dependency resource="c:parentComp"/>-->
         <!--<c:responsiveComponent/>-->
         <!--<c:customLabel/>-->
-        <c:datatableComponentLWC></c:datatableComponentLWC>
+        <!--<c:datatableComponentLWC></c:datatableComponentLWC>-->
     </div>
 </aura:application>

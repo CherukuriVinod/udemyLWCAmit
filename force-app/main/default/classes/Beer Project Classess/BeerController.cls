@@ -1,15 +1,15 @@
 public with sharing class BeerController {
 
     public static String generateCardId(){
-        String CharList = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_';
+        String charList = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_';
         Integer position;
-        Integer LengthRequired = 30;
-        String Res = '';
-        for(Integer i = 0; i <= LengthRequired; i++) {
-            position = Integer.valueof(String.valueof(Math.roundToLong(CharList.length()*Math.random()))) -1;
-            Res += CharList.substring(position,position+1);
+        Integer lengthRequired = 30;
+        String res = '';
+        for(Integer i = 0; i <= lengthRequired; i++) {
+            position = Integer.valueof(String.valueof(Math.roundToLong(charList.length()*Math.random()))) -1;
+            res += charList.substring(position,position+1);
         }
-        return Res;
+        return res;
     }
 
     @AuraEnabled
@@ -116,7 +116,7 @@ public with sharing class BeerController {
     }
 
     public static Coupon__c getCouponInformation(String name){
-        Coupon__c couponRec = [Select Id, Name, 
+       Coupon__c couponRec = [Select Id, Name, 
                                 Price__c 
                                 FROM Coupon__c
                                 Where Expired__c = false
@@ -126,18 +126,18 @@ public with sharing class BeerController {
     }
 
     @AuraEnabled
-    public static string createCartItems(String CartId, String BeerId, Decimal Amount){
+    public static string createCartItems(String cartId, String beerId, Decimal amount){
         Cart_Item__c item = new Cart_Item__c();
-        Map<Id, Cart_Item__c> cartItemsMap = getCartItems(CartId);
-        if ( cartItemsMap.containsKey(BeerId) ) {
-            item = cartItemsMap.get(BeerId);
+        Map<Id, Cart_Item__c> cartItemsMap = getCartItems(cartId);
+        if ( cartItemsMap.containsKey(beerId) ) {
+            item = cartItemsMap.get(beerId);
             item.Item_Quantity__c = item.Item_Quantity__c + 1;
             update item;
         } else {
-            item.Beer__c = BeerId;
-            item.Cart__c = CartId;
+            item.Beer__c = beerId;
+            item.Cart__c = cartId;
             item.Item_Quantity__c = 1;
-            item.Item_Amount__c = Amount;
+            item.Item_Amount__c = amount;
             insert item;
         }   
         return item.Id;
@@ -157,7 +157,7 @@ public with sharing class BeerController {
 
     @AuraEnabled(cacheable=false)
     public static string getCartId(){
-        List<Cart__c> cartInfo = [ Select Id, Name 
+        List<Cart__c> cartInfo = [Select Id, Name 
                                 FROM Cart__c 
                                 Where User__c =: UserInfo.getUserId()
                                 AND Cart_Status__c = 'Open'
@@ -174,9 +174,9 @@ public with sharing class BeerController {
             }
             
             CartWrapper wrapper = new CartWrapper();
-            wrapper.CartId = cartInfo.get(0).Id;
+            wrapper.cartId = cartInfo.get(0).Id;
             wrapper.items = cartItems;
-            wrapper.Count = itemQnty;
+            wrapper.count = itemQnty;
             return JSON.serialize(wrapper);
         } else { 
             Cart__c defaultCart = new Cart__c();
@@ -188,9 +188,9 @@ public with sharing class BeerController {
             defaultCart.User__c = UserInfo.getUserId();
             insert defaultCart;
             CartWrapper wrapper = new CartWrapper();
-            wrapper.CartId = defaultCart.Id;
+            wrapper.cartId = defaultCart.Id;
             wrapper.items = null;
-            wrapper.Count = 0;
+            wrapper.count = 0;
             return JSON.serialize(wrapper);
         }                        
     }
@@ -199,26 +199,26 @@ public with sharing class BeerController {
     @AuraEnabled(cacheable=true)
     public static List<sObject> searchBeer(String searchParam){
         String likeParam = '%' +searchParam+'%';
-        String Query = '';
+        String query = '';
 
         /*
             Select Id, Name From beer__c Where Name Like '%aa%'
         */
         if(searchParam != null){
-           Query  = 'Select Id, Name, Alcohol__c,brewery_id__c, brewery_Name__c, Id__c, Price__c,Image__c,Remaining_Quantity__c, Tags__c, Total_Quantity__c From Beer__c Where Name Like :likeParam LIMIT 50 ';
+           query  = 'Select Id, Name, Alcohol__c,brewery_id__c, brewery_Name__c, Id__c, Price__c,Image__c,Remaining_Quantity__c, Tags__c, Total_Quantity__c From Beer__c Where Name Like :likeParam LIMIT 50 ';
         }else{
-           Query  = 'Select Id, Name, Alcohol__c,brewery_id__c, brewery_Name__c, Id__c, Price__c,Image__c,Remaining_Quantity__c, Tags__c, Total_Quantity__c From Beer__c LIMIT 50 '; 
+           query  = 'Select Id, Name, Alcohol__c,brewery_id__c, brewery_Name__c, Id__c, Price__c,Image__c,Remaining_Quantity__c, Tags__c, Total_Quantity__c From Beer__c LIMIT 50 '; 
         }
         
-        List<SObject> sObjectList = Database.query(Query);
+        List<SObject> sObjectList = Database.query(query);
         return sObjectList;
     }
 
     public class CartWrapper {
         @AuraEnabled
-        public String CartId                { get; set; }
+        public String cartId                { get; set; }
         @AuraEnabled
-        public Decimal Count                { get; set; }
+        public Decimal count                { get; set; }
         @AuraEnabled
         public List<Cart_Item__c> items     { get; set; }
     }

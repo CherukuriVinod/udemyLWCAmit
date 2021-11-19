@@ -5,17 +5,17 @@ export default class IteratorDemo extends LightningElement {
         {
             Id: 1,
             Name: "Vinod Cherukuri",
-            Email: "123@email.com",
+            Email: "123@email.com"
         },
         {
             Id: 2,
             Name: "Jennifer Lopez",
-            Email: "Jenny@emailcom",
+            Email: "Jenny@emailcom"
         },
         {
             Id: 3,
             Name: "Britney Spears",
-            Email: "Britney@email.com",
-        },
-    ];
+            Email: "Britney@email.com"
+        }
+    ]
 }
