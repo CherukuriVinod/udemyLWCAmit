@@ -3,12 +3,12 @@
         <!--<c:helloWorld1/>-->
         <!--<c:htmlEvents/>-->
         <!--<c:ifElseDemo/>-->
-        <c:iteratorDemo/>
-        <!--<c:calculatorCmp/> -->
-        <!--<c:calculatorDemo/> -->
-        <!--<c:propDemo/> -->
+        <!--<c:iteratorDemo/>-->
+        <!--<c:calculatorCmp/>-->
+        <!--<c:calculatorDemo/>-->
+        <!--<c:propDemo/>-->
         <!--<c:hooksExamples/> -->
-        <!--<c:getterSetterDemo/> -->
+        <c:getterSetterDemo/>
         <!--<c:disconnectedCallbackDemo/> -->
         <!--<c:renderLwc/>-->
         <!--<c:parentComp/>-->

@@ -1,9 +1,9 @@
-import { LightningElement, track, api } from 'lwc';
+import { LightningElement } from 'lwc';
 
 export default class PropDemo extends LightningElement {
-    @track message = 'Reactive Property';
+    message = 'Reactive Property';
 
-    @api message1 = 'Reactive Property using @api decorators';
+    message1 = 'Reactive Property using @api decorators';
 
     get name(){
         return 'Vinod Cherukuri';

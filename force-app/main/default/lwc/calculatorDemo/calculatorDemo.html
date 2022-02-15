@@ -1,6 +1,7 @@
 <template>
     <div class="slds-var-m-around_small" style="display: inline-block">
         <lightning-card title="Calculator" icon-name="standard:number_input">
+            
             <lightning-input value={number1} 
                 label="Number 1" 
                 name="number1"
@@ -14,10 +15,10 @@
                 onchange={handleChangeEvent} required >
             </lightning-input> <br/>
          
-        <div class="slds-box">  
-          <b>Output value is : {resultValue} </b>
-        </div>
-        <br/>  
+            <div class="slds-box">  
+                <b>Output value is : {resultValue} </b>
+            </div>
+            <br/>  
             <lightning-button variant="brand" label="Sum" onclick={doSum} >
 
             </lightning-button>
