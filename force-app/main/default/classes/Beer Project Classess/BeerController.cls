@@ -120,21 +120,21 @@ public with sharing class BeerController {
                                 Price__c 
                                 FROM Coupon__c
                                 Where Expired__c = false
-                                AND (Remaining_Quantity__c > 0 OR Name ='Default')
+                                AND (Remaining_Quantity__c >0 OR Name ='Default')
                                 AND Name =: name WITH SECURITY_ENFORCED];
         return couponRec;
     }
 
     @AuraEnabled
-    public static string createCartItems(String cartId, String beerId, Decimal amount){
+    public static string createCartItems(String cartId, String BeerId, Decimal Amount){
         Cart_Item__c item = new Cart_Item__c();
         Map<Id, Cart_Item__c> cartItemsMap = getCartItems(cartId);
-        if ( cartItemsMap.containsKey(beerId) ) {
-            item = cartItemsMap.get(beerId);
+        if ( cartItemsMap.containsKey(BeerId) ) {
+            item = cartItemsMap.get(BeerId);
             item.Item_Quantity__c = item.Item_Quantity__c + 1;
             update item;
         } else {
-            item.Beer__c = beerId;
+            item.Beer__c = BeerId;
             item.Cart__c = cartId;
             item.Item_Quantity__c = 1;
             item.Item_Amount__c = amount;
@@ -174,9 +174,9 @@ public with sharing class BeerController {
             }
             
             CartWrapper wrapper = new CartWrapper();
-            wrapper.cartId = cartInfo.get(0).Id;
+            wrapper.CartId = cartInfo.get(0).Id;
             wrapper.items = cartItems;
-            wrapper.count = itemQnty;
+            wrapper.Count = itemQnty;
             return JSON.serialize(wrapper);
         } else { 
             Cart__c defaultCart = new Cart__c();

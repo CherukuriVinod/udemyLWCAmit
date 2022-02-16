@@ -8,7 +8,8 @@
         <!--<c:calculatorDemo/>-->
         <!--<c:propDemo/>-->
         <!--<c:hooksExamples/> -->
-        <c:getterSetterDemo/>
+        <!--<c:getterSetterDemo/>-->
+        <c:callExternalAPIFromLWC/>
         <!--<c:disconnectedCallbackDemo/> -->
         <!--<c:renderLwc/>-->
         <!--<c:parentComp/>-->
