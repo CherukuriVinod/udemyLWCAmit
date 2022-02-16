@@ -1,5 +1,5 @@
 import { LightningElement } from 'lwc';
-
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 // * GitHub API Base URL
 const GITHUB_URL = 'https://api.github.com/users/';
 export default class CallExternalAPIFromLWC extends LightningElement {
@@ -53,7 +53,13 @@ export default class CallExternalAPIFromLWC extends LightningElement {
             })
             .catch(error => console.log(error))
         } else {
-            alert('Please specify a username');
+            //alert('Please specify a username');
+            const userName = new ShowToastEvent({
+                'title' : 'Empty text',
+                "message" : 'Please specify a username',
+                "variant" : "warning", 
+            });
+            this.dispatchEvent(userName);
         }
     }
 
