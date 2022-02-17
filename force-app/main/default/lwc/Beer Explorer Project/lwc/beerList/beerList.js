@@ -55,7 +55,7 @@ export default class BeerList extends NavigationMixin  (LightningElement) {
             Amount : selectBeerRecord.Price__c
         })
         .then(data => {
-            console.log(' Cart Item Id ', data);
+            //console.log(' Cart Item Id ', data);
             this.itemsinCart = this.itemsinCart + 1;
             const toast = new ShowToastEvent({
                 'title' : 'Success!!',
@@ -109,5 +109,4 @@ export default class BeerList extends NavigationMixin  (LightningElement) {
             this.beerRecords = undefined;
         })
     }
-
 }

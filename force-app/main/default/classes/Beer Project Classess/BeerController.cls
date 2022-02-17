@@ -5,11 +5,11 @@ public with sharing class BeerController {
         Integer position;
         Integer lengthRequired = 30;
         String res = '';
-        for(Integer i = 0; i <= lengthRequired; i++) {
-            position = Integer.valueof(String.valueof(Math.roundToLong(charList.length()*Math.random()))) -1;
-            res += charList.substring(position,position+1);
+        for(Integer i = 0; i <= LengthRequired; i++) {
+            position = Integer.valueof(String.valueof(Math.roundToLong(CharList.length()*Math.random()))) -1;
+            Res += CharList.substring(position,position+1);
         }
-        return res;
+        return Res;
     }
 
     @AuraEnabled
@@ -58,7 +58,7 @@ public with sharing class BeerController {
             oItem.Item_Price__c = item.Item_Amount__c;
             orderItems.add(oItem);
         }
-        insert orderItems; 
+        insert orderItems;
 
         Cart__c cart = new Cart__c();
         cart.Id = cartId;
@@ -120,21 +120,21 @@ public with sharing class BeerController {
                                 Price__c 
                                 FROM Coupon__c
                                 Where Expired__c = false
-                                AND (Remaining_Quantity__c >0 OR Name ='Default')
+                                AND (Remaining_Quantity__c > 0 OR Name ='Default')
                                 AND Name =: name WITH SECURITY_ENFORCED];
         return couponRec;
     }
 
     @AuraEnabled
-    public static string createCartItems(String cartId, String BeerId, Decimal Amount){
+    public static string createCartItems(String cartId, String beerId, Decimal amount){
         Cart_Item__c item = new Cart_Item__c();
         Map<Id, Cart_Item__c> cartItemsMap = getCartItems(cartId);
-        if ( cartItemsMap.containsKey(BeerId) ) {
-            item = cartItemsMap.get(BeerId);
+        if ( cartItemsMap.containsKey(beerId) ) {
+            item = cartItemsMap.get(beerId);
             item.Item_Quantity__c = item.Item_Quantity__c + 1;
             update item;
         } else {
-            item.Beer__c = BeerId;
+            item.Beer__c = beerId;
             item.Cart__c = cartId;
             item.Item_Quantity__c = 1;
             item.Item_Amount__c = amount;
